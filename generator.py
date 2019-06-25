@@ -69,10 +69,8 @@ output.write("insert into ORDERS (ADRESS, RECIPIENT, PHONE, DELIVERYTYPE_ID, ORD
 output.write("VALUES\n")
 
 for i in range(0,number_of_orders-1):
-  output.write("\t('%s', '%s', '%s', %d, '%s', %d, %s, to_date('dd.mm.yyyy', '%s'), %d, %s, %d, %d ),\n" 
-    % getOrderCort())
+  output.write("\t('%s', '%s', '%s', %d, '%s', %d, %s, to_date('dd.mm.yyyy', '%s'), %d, %s, %d, %d ),\n" % getOrderCort())
 
-output.write("\t('%s', '%s', '%s', %d, '%s', %d, %s, to_date('dd.mm.yyyy', '%s'), %d, %s, %d, %d );" 
-    % getOrderCort())
+output.write("\t('%s', '%s', '%s', %d, '%s', %d, %s, to_date('dd.mm.yyyy', '%s'), %d, %s, %d, %d );" % getOrderCort())
 
 output.close()
