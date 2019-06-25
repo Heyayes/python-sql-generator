@@ -2,7 +2,6 @@ from random import randint as ri
 from datetime import datetime
 import time
 
-
 number_of_orders = 30000 # Задаём число нужных сущностей заказов.
 saches_count = 5   # Эта строка и три ниже отражают количество существующих
 cover_count = 3    # сущностей в БД, идентификаторы которых будут вложены
