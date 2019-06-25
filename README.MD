@@ -8,13 +8,13 @@
 
 Генерация записей полей происходит с помощью функций:
 * ADRESS = get_address()
-* RECIPIENT = get_person()
-* PHONE = phonegen()
+* RECIPIENT = get_person() - Случайная личность. Женщина или мужчина
+* PHONE = phonegen() - Случайный телефон формата 79042881111
 * DELIVERYTYPE_ID = getRand(delivery_count)
-* ORDERSTATE = getordestate()
-* SUMM = ri(1000,3000)
+* ORDERSTATE = getordestate() - Случайны статус
+* SUMM = ri(1000,3000) - Сумма от 1000 до 3000
 * HAVEPATCH = getTrueOrFalse()
-* ORDER_DATE = get_date()
+* ORDER_DATE = get_date() - Случайная дата от 01.01.2017 до настоящей даты
 * CANVAS_ID = getRand(canvas_count)
 * PAYED = getTrueOrFalse()
 * SACHE_ID = getRand(saches_count)
