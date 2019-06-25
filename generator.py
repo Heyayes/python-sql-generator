@@ -47,6 +47,11 @@ def getAddress():
   return str('г.%s, %s, дом %d, кв.%d' % 
     (getRand(city), getRand(street), ri(1,50), ri(1,150)))
 
+def getOrderCort():
+	return (getAddress(), getPerson(), phonegen(), getRand(delivery_count), 
+		getRandomOrdeState(), ri(1000,3000), getTrueOrFalse(), get_date(), 
+		getRand(canvas_count), getTrueOrFalse(), getRand(saches_count), getRand(cover_count))
+
 # Объявление списков имен, отчеств и фамилий g*-женских, b*-мужских
 # *fn - отчество, *sn - фамилия, *nm - имя
 bfn = readToList('boys/fathername')
@@ -64,10 +69,10 @@ output.write("insert into ORDERS (ADRESS, RECIPIENT, PHONE, DELIVERYTYPE_ID, ORD
 output.write("VALUES\n")
 
 for i in range(0,number_of_orders-1):
-output.write("\t('%s', '%s', '%s', %d, '%s', %d, %s, to_date('dd.mm.yyyy', '%s'), %d, %s, %d, %d ),\n" 
-    % (getAddress(), getPerson(), phonegen(), getRand(delivery_count), getRandomOrdeState(), ri(1000,3000), getTrueOrFalse(), get_date(), getRand(canvas_count), getTrueOrFalse(), getRand(saches_count), getRand(cover_count)))
+  output.write("\t('%s', '%s', '%s', %d, '%s', %d, %s, to_date('dd.mm.yyyy', '%s'), %d, %s, %d, %d ),\n" 
+    % getOrderCort())
 
 output.write("\t('%s', '%s', '%s', %d, '%s', %d, %s, to_date('dd.mm.yyyy', '%s'), %d, %s, %d, %d );" 
-    % (getAddress(), getPerson(), phonegen(), getRand(delivery_count), getRandomOrdeState(), ri(1000,3000), getTrueOrFalse(), get_date(), getRand(canvas_count), getTrueOrFalse(), getRand(saches_count), getRand(cover_count)))
+    % getOrderCort())
 
 output.close()
