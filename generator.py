@@ -42,6 +42,11 @@ def getPerson():
   choise = ri(0,1)
   return getGirl() if choise == 1 else getBoy()
 
+#Возвращает случайный адрес вида "г.Москва, Пролетарская набережная, дом 41, кв.88"
+def getAddress():
+  return str('г.%s, %s, дом %d, кв.%d' % 
+    (getRand(city), getRand(street), ri(1,50), ri(1,150)))
+
 # Объявление списков имен, отчеств и фамилий g*-женских, b*-мужских
 # *fn - отчество, *sn - фамилия, *nm - имя
 bfn = readToList('boys/fathername')
@@ -52,11 +57,6 @@ gsn = readToList('girls/surname')
 gnm = readToList('girls/name')
 city = readToList('address/city')
 street = readToList('address/street')
-
-#Возвращает случайный адрес вида "г.Москва, Пролетарская набережная, дом 41, кв.88"
-def getAddress():
-  return str('г.%s, %s, дом %d, кв.%d' % 
-    (getRand(city), getRand(street), ri(1,50), ri(1,150)))
 
 output = open('insert_orders.sql','w', encoding='utf-8')
 # будем генерировать sql запрос для заполнения таблицы заказов из сырых данных 
