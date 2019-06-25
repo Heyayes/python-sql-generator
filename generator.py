@@ -55,7 +55,6 @@ def get_address():
   return str('г.%s, %s, дом %d, кв.%d' % 
     (getRand(city), getRand(street), ri(1,50), ri(1,150)))
 
-
 output = open('insert_orders.sql','w', encoding='utf-8')
 # будем генерировать sql запрос для заполнения таблицы заказов из сырых данных 
 output.write("insert into ORDERS (ADRESS, RECIPIENT, PHONE, DELIVERYTYPE_ID, ORDERSTATE, SUMM, HAVEPATCH, ORDER_DATE, CANVAS_ID, PAYED, SACHE_ID, COVER_ID)\n")
