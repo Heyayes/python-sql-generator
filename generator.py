@@ -8,16 +8,8 @@ cover_count = 3    # сущностей в БД, идентификаторы к
 delivery_count = 4 # в запрос.
 canvas_count = 4   #
 
-# Объявление списков имен, отчеств и фамилий g*-женских, b*-мужских
-# *fn - отчество, *sn - фамилия, *nm - имя
-bfn =    [line.strip() for line in open('boys/fathername','r',encoding='utf-8')]
-bsn =    [line.strip() for line in open('boys/surname','r',encoding='utf-8')]
-bnm =    [line.strip() for line in open('boys/name','r',encoding='utf-8')]
-gfn =    [line.strip() for line in open('girls/fathername','r',encoding='utf-8')]
-gsn =    [line.strip() for line in open('girls/surname','r',encoding='utf-8')]
-gnm =    [line.strip() for line in open('girls/name','r',encoding='utf-8')]
-city =   [line.strip() for line in open('address/city','r',encoding='utf-8')]
-street = [line.strip() for line in open('address/street','r',encoding='utf-8')]
+def readToList(filename):
+  return [line.strip() for line in open(filename,'r',encoding='utf-8')]
 
 def getRand(input):
   if type(input) == int  : return ri(1,input)
@@ -26,7 +18,7 @@ def getRand(input):
 def phonegen():
   return '790'+str(ri(10000000,99999999))
 
-def getordestate():
+def getRandomOrdeState():
   states = ['CREATED','PROCESS','SENDED','DELIVERED'] #Массив возможных статусов заявлений
   return getRand(states)
 
@@ -40,18 +32,29 @@ def get_date():
   later = 1483228800 #01.01.2017 in timestamp 
   return str(datetime.utcfromtimestamp(ri(later,now)).strftime('%d.%m.%Y')) 
 
-def get_boy():
+def getBoy():
   return str('%s %s %s' % (getRand(bnm), getRand(bfn), getRand(bsn)))
 
-def get_girl():
+def getGirl():
   return str('%s %s %s' % (getRand(gnm), getRand(gfn), getRand(gsn)))
 
-def get_person():
+def getPerson():
   choise = ri(0,1)
-  return get_girl() if choise == 1 else get_boy()
+  return getGirl() if choise == 1 else getBoy()
+
+# Объявление списков имен, отчеств и фамилий g*-женских, b*-мужских
+# *fn - отчество, *sn - фамилия, *nm - имя
+bfn = readToList('boys/fathername')
+bsn = readToList('boys/surname')
+bnm = readToList('boys/name')
+gfn = readToList('girls/fathername')
+gsn = readToList('girls/surname')
+gnm = readToList('girls/name')
+city = readToList('address/city')
+street = readToList('address/street')
 
 #Возвращает случайный адрес вида "г.Москва, Пролетарская набережная, дом 41, кв.88"
-def get_address():
+def getAddress():
   return str('г.%s, %s, дом %d, кв.%d' % 
     (getRand(city), getRand(street), ri(1,50), ri(1,150)))
 
@@ -62,9 +65,9 @@ output.write("VALUES\n")
 
 for i in range(0,number_of_orders-1):
   output.write('\t(\'%s\', \'%s\', \'%s\', %d, \'%s\', %d, %s, to_date(\'dd.mm.yyyy\', \'%s\'), %d, %s, %d, %d ),\n' 
-    % (get_address(), get_person(), phonegen(), getRand(delivery_count), getordestate(), ri(1000,3000), getTrueOrFalse(), get_date(), getRand(canvas_count), getTrueOrFalse(), getRand(saches_count), getRand(cover_count)))
+    % (getAddress(), getPerson(), phonegen(), getRand(delivery_count), getRandomOrdeState(), ri(1000,3000), getTrueOrFalse(), get_date(), getRand(canvas_count), getTrueOrFalse(), getRand(saches_count), getRand(cover_count)))
 
 output.write('\t(\'%s\', \'%s\', \'%s\', %d, \'%s\', %d, %s, to_date(\'dd.mm.yyyy\', \'%s\'), %d, %s, %d, %d );' 
-    % (get_address(), get_person(), phonegen(), getRand(delivery_count), getordestate(), ri(1000,3000), getTrueOrFalse(), get_date(), getRand(canvas_count), getTrueOrFalse(), getRand(saches_count), getRand(cover_count)))
+    % (getAddress(), getPerson(), phonegen(), getRand(delivery_count), getRandomOrdeState(), ri(1000,3000), getTrueOrFalse(), get_date(), getRand(canvas_count), getTrueOrFalse(), getRand(saches_count), getRand(cover_count)))
 
 output.close()
