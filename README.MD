@@ -29,4 +29,4 @@ user@host$ python generator.py
 Скрипт был создан из-за неудачного поиска генераторов сущностей для spring boot.
 Если вы знаете как можно найти генератор, то буду признателен, если поделитесь
 
-[проекта] : https://github.com/Heyayes/sleepAndTrip
+[проекта]: https://github.com/Heyayes/sleepAndTrip
